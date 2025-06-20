@@ -131,86 +131,34 @@ This is the <b>FIRST</b> and <b>ONLY</b> time I have tried to organise my birthd
 If this event is unsuccesful - either due to wet weather, illness or divine intervention - I'm going to take it as a sign from God to not go ahead with it. Party is on July 12th or not at all, folks!            </div>
           </div>
 
-        <form class="rsvp-form" onsubmit="submitRSVP(event)">
-        <h2>RSVP</h2>
-        <label>
-          Name:
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Will you be there?
-          <select name="attendance" required>
-            <option value="">Please select</option>
-            <option value="yes_both">Absolutely! I'd like to attend both the lunch and crafts 🎉</option>
-            <option value="yes_crafts"> I do want to come but only to crafts 🎨</option>
-            <option value="maybe">Maybe, still confirming 🐻</option>
-            <option value="no">Sadly can't make it 😢</option>
-          </select>
-        </label>
-        <label>
-          Message:
-          <textarea name="message" placeholder="Anything you'd like to let me know?"></textarea>
-        </label>
-        <button type="submit">Send My RSVP 🐾</button>
-
-      </form>
-
-      <script>
-        function submitRSVP(event) {
-          event.preventDefault();
-          const form = event.target;
-      
-          const data = {
-            name: form.name.value,
-            attendance: form.attendance.value,
-            message: form.message.value
-          };
-      
-          fetch("https://script.google.com/macros/s/AKfycbx26HHeamkPF0JhX4LuvBgq79qfCk4eMJxKJLOlZ_InQoVlCn1QCOmKB1Fg2hB1P_cY/exec", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          })
-          .then(res => res.text())
-          .then(() => {
-            alert("RSVP sent! 🐾");
-            form.reset();
-          })
-          .catch(err => {
-            console.error("Error submitting RSVP:", err);
-            alert("Oops, something went wrong 💔");
-          });
-        }
-      </script>
+          <iframe src="https://forms.gle/RXJvLHSWmRhoThLi9?embedded=true"
+        width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
+  Loading…
+</iframe>
 
 
 <script>
-  window.addEventListener('DOMContentLoaded', () => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const bee = entry.target.querySelector('.connector-bee');
-        if (bee) {
-          if (entry.isIntersecting) {
-            bee.style.opacity = '1';
-            bee.style.transform = 'translate(-50%, 10px) scale(1.2)';
-          } else {
-            bee.style.opacity = '0';
-            bee.style.transform = 'translate(-50%, 30px)';
-          }
-        }
-      });
-    }, {
-      threshold: 0.4
-    });
+  window.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("mainNav");
+    const masthead = document.querySelector(".masthead");
 
-    document.querySelectorAll('.section').forEach(section => {
-      observer.observe(section);
-    });
+    function updateNavbarVisibility() {
+      const scrollY = window.scrollY;
+      const mastheadBottom = masthead.offsetTop + masthead.offsetHeight;
+
+      if (scrollY > mastheadBottom) {
+        navbar.classList.add("hidden");
+      } else {
+        navbar.classList.remove("hidden");
+      }
+    }
+
+    window.addEventListener("scroll", updateNavbarVisibility);
+    updateNavbarVisibility(); // Check once on load
   });
 </script>
 
-      
-      
+
         </body>        
 
 
