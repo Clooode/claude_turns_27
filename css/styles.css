@@ -97,7 +97,7 @@
 .section {
   position: relative;
   width: 75%;
-  margin: 40px 0;
+  margin: 80px 0;
 }
 
 .section:nth-child(odd) {
@@ -125,23 +125,29 @@
   margin-bottom: 10px;
 }
 
-/* dashed line connectors */
 .section::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
-  width: 2px;
-  height: 40px;
-  border-left: 2px dashed #c2185b;
   left: 50%;
+  width: 60px;
+  height: 80px;
   transform: translateX(-50%);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='80' viewBox='0 0 60 80'><path d='M30 0 C0 40, 60 40, 30 80' stroke='%23c2185b' fill='none' stroke-width='2' stroke-dasharray='5,5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 0;
 }
+
 
 .section:last-child::after {
   content: none;
 }
 
 .rsvp-form {
+  position: relative;
   background: #fff0f5;
   border: 2px dashed #c2185b;
   border-radius: 10px;
@@ -150,6 +156,14 @@
   margin: 40px auto;
   font-family: 'Comic Sans MS', cursive, sans-serif;
 }
+.rsvp-form::before {
+  content: '🍓';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 2rem;
+}
+
 
 .rsvp-form h2 {
   color: #c2185b;
@@ -186,8 +200,38 @@
 }
 
 .rsvp-form button:hover {
-  background-color: #ec407a;
+  background-color: #ec407a ;
+
 }
+
+
+body {
+  background: linear-gradient(
+    to bottom,
+    #235552 0%,    /* deep teal green */
+    #8dc9c4 15%,   /* cool pale teal */
+    #f8bacf 40%,   /* soft pink */
+    #ffe6eb 100%   /* pale cotton candy */
+  );
+}
+
+.connector-bee {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  font-size: 22px;
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s;
+  animation: bee-hover 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bee-hover {
+  0%, 100% { transform: translate(-50%, 10px) rotate(-5deg); }
+  50% { transform: translate(-50%, 15px) rotate(5deg); }
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {
@@ -11170,12 +11214,39 @@ body {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/bg-masthead.png");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 75%,  #235552 100%), url("../assets/img/bg-masthead.png");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
 }
+
+.masthead-tooltip {
+  position: relative;
+}
+
+.bg-tooltip {
+  position: absolute;
+  top: 20%;
+  left: 80%;
+  transform: translateX(-50%);
+  background-color: #014d4e;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 100;
+}
+
+.masthead-tooltip:hover .bg-tooltip {
+  opacity: 1;
+}
+
+
 .masthead h1, .masthead .h1 {
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 2.5rem;
