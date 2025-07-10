@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The results are in!</title>
+        <link href="css/voting.css" rel="stylesheet" />
+</head>
+<body>
+    <a href="index.html" class="back-button">← Back</a>
+
+  <h2 class="leaderboard-title"> Leaderboard</h2>
+
+  <h3> THIS IS FAKE DATA, REAL DATA TO BE POPULATED ON THE DAY</h3>
+
+<div class="cloud cloud1a"></div>
+<div class="cloud cloud1b"></div>
+<div class="cloud cloud1c"></div>
+
+<div class="cloud cloud2a"></div>
+<div class="cloud cloud2b"></div>
+<div class="cloud cloud2c"></div>
+
+  <div id="leaderboard">Loading...</div>
+
+  <div class="grass-layer grass1"></div>
+  <div class="grass-layer grass2"></div>
+  <div class="grass-layer grass3"></div>
+
+
+  <script>
+fetch("https://script.google.com/macros/s/AKfycbzibgj4lgml3D7ASEiVru8p4OemtdHkFEXX72qVPNhhsmq9PDsUn1pMgIkb1JsyT7G7/exec")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("leaderboard");
+        container.innerHTML = ""; // Clear "Loading..."
+
+        for (const [name, score] of Object.entries(data)) {
+          const item = document.createElement("div");
+          item.className = "score-item";
+          item.textContent = `${name}: ${score} points`;
+          container.appendChild(item);
+        }
+      })
+      .catch(error => {
+        document.getElementById("leaderboard").textContent = "Failed to load results 🐛";
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
