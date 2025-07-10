@@ -29,18 +29,25 @@
 
   <script>
 fetch("https://script.google.com/macros/s/AKfycbzibgj4lgml3D7ASEiVru8p4OemtdHkFEXX72qVPNhhsmq9PDsUn1pMgIkb1JsyT7G7/exec")
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById("leaderboard");
-        container.innerHTML = ""; // Clear "Loading..."
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("leaderboard");
+    container.innerHTML = ""; // Clear "Loading..."
 
-        for (const [name, score] of Object.entries(data)) {
-          const item = document.createElement("div");
-          item.className = "score-item";
-          item.textContent = `${name}: ${score} points`;
-          container.appendChild(item);
-        }
-      })
+    // Convert data to array and sort descending
+    const sorted = Object.entries(data)
+      .sort((a, b) => b[1] - a[1]) // Sort by score, descending
+      .slice(0, 5); // Keep only top 5
+
+    // Render top 5
+    for (const [name, score] of sorted) {
+      const item = document.createElement("div");
+      item.className = "score-item";
+      item.textContent = `${name}: ${score} points`;
+      container.appendChild(item);
+    }
+  })
+
       .catch(error => {
         document.getElementById("leaderboard").textContent = "Failed to load results 🐛";
         console.error(error);
