@@ -3026,7 +3026,7 @@ textarea.form-control-lg {
   --bs-btn-disabled-border-color: #ff91bf
 } */
 
-.btn-primary {
+.btn-gold {
   display: inline-block;
   padding: 16px 32px;
   font-size: 22px;
@@ -3045,14 +3045,14 @@ textarea.form-control-lg {
   z-index: 5;
 }
 
-.btn-primary:hover {
+.btn-gold:hover {
   background: linear-gradient(to right, #fff176, #ffca28);
   box-shadow: 0 0 24px rgba(255, 213, 0, 0.9),
               0 0 60px rgba(255, 213, 0, 0.5) inset;
   transform: scale(1.5);
 }
 
-.btn-primary:active {
+.btn-gold:active {
   transform: scale(1.1);
   box-shadow: 0 0 28px rgba(255, 223, 0, 1),
               0 0 70px rgba(255, 223, 0, 0.6) inset;
